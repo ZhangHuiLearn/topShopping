@@ -1,0 +1,10 @@
+server:
+  port: 7002
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    fetch-registry: false #是否注册到eureka
+    register-with-eureka: false #是否从服务获取注册信息
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:7001/eureka/ #这里是另一个中心的地址

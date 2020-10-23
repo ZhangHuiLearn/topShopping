@@ -9,7 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>top_eureka_7001</module>
+        <module>top_eureka</module>
+        <module>top_eureka/top_eureka_7001</module>
+        <module>top_eureka/top_eureka_7002</module>
+        <module>top_config</module>
     </modules>
 
     <properties>
