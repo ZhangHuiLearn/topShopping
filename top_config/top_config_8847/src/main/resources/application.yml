@@ -14,5 +14,6 @@ spring:
       server:
         git:
           uri: https://github.com/ZhangHuiLearn/topShopping.git
+          search-paths: config
           username: ZhangHuiLearn
           password: zhang404hui

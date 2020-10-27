@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>top_eureka</artifactId>
+    <artifactId>top_user_parent</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>top_eureka_7001</module>
-        <module>top_eureka_7002</module>
+        <module>top_user_interface</module>
+        <module>top_user_server_01</module>
     </modules>
 </project>

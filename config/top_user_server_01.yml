@@ -8,11 +8,11 @@ server:
 spring:
   profiles: dev #开发环境
   application:
-    name: USER-PROVIDER
+    name: user-provider
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-7001.com:7001/eureka,http://eureka-7002.com:7002/eureka  #告诉服务提供者要把服务注册到哪儿 #单机环境
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka  #告诉服务提供者要把服务注册到哪儿 #单机环境
   instance:
     prefer-ip-address: true #显示客户端真实ip
 ---
@@ -21,7 +21,7 @@ server:
 spring:
   profiles: test #测试环境
   application:
-    name: USER-PROVIDER-TEST
+    name: user-provider
 eureka:
   client:
     service-url:
@@ -34,7 +34,7 @@ server:
 spring:
   profiles: prod #生产环境
   application:
-    name: USER-PROVIDER-PROD
+    name: user-provider
 eureka:
   client:
     service-url:
