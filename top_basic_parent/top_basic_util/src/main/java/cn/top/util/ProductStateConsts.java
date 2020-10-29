@@ -5,6 +5,6 @@ package cn.top.util;
  *
  */
 public interface ProductStateConsts {
-	public static byte PRODUCT_STATE_OFFSALE  =  0;
-	public static byte PRODUCT_STATE_ONSALE = 1;
+	byte PRODUCT_STATE_OFFSALE  =  0;
+	byte PRODUCT_STATE_ONSALE = 1;
 }

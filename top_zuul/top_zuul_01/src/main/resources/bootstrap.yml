@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      name: top_user_server_01 #github上面名称
+      name: top_zuul_server_01 #github上面名称
       profile: dev #环境
       label: master #分支
 #      uri: http://127.0.0.1:8847 #配置服务器

@@ -18,7 +18,7 @@ public class CodeGenerateUtils {
 			nanoPart+=10000L;
 		}
 		long randomPart = (long)(Math.random()*(90000)+10000);
-		String code = "0"+String.valueOf((new BigDecimal(nanoPart).multiply(new BigDecimal(randomPart))));
+		String code = "0"+ new BigDecimal(nanoPart).multiply(new BigDecimal(randomPart));
 		return code.substring(code.length()-10);
 	}
 	

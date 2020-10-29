@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+server:
+  port: 9528
+spring:
+  profiles: dev
+  application:
+    name: top-zuul-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka
+zuul:
+  routes:
+    user-provider: /user/** #以/user开头的所有路径都转发给user-provider进行处理
+  ignored-services: "*" #忽略掉服务名访问方式 使用上面/user的方式来访问
+  prefix: "/top" #添加 前缀访问  localhost:9527/top/user/provider/user/2
+---
+server:
+  port: 9528
+spring:
+  profiles: test
+  application:
+    name: top-zuul-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka
+zuul:
+  routes:
+    user-provider: /user/** #以/user开头的所有路径都转发给user-provider进行处理
+  ignored-services: "*" #忽略掉服务名访问方式 使用上面/user的方式来访问
+  prefix: "/top" #添加 前缀访问  localhost:9527/top/user/provider/user/2
+---
+server:
+  port: 9528
+spring:
+  profiles: prod
+  application:
+    name: top-zuul-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka
+zuul:
+  routes:
+    user-provider: /user/** #以/user开头的所有路径都转发给user-provider进行处理
+  ignored-services: "*" #忽略掉服务名访问方式 使用上面/user的方式来访问
+  prefix: "/top" #添加 前缀访问  localhost:9527/top/user/provider/user/2
