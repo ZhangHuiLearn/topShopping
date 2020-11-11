@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.top.mapper.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.top.domain.Product">
+        <id column="id" property="id" />
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="name" property="name" />
+        <result column="subName" property="subName" />
+        <result column="code" property="code" />
+        <result column="productType" property="productType" />
+        <result column="onSaleTime" property="onSaleTime" />
+        <result column="offSaleTime" property="offSaleTime" />
+        <result column="brandId" property="brandId" />
+        <result column="state" property="state" />
+        <result column="maxPrice" property="maxPrice" />
+        <result column="minPrice" property="minPrice" />
+        <result column="saleCount" property="saleCount" />
+        <result column="viewCount" property="viewCount" />
+        <result column="commentCount" property="commentCount" />
+        <result column="commentScore" property="commentScore" />
+        <result column="viewProperties" property="viewProperties" />
+        <result column="goodCommentCount" property="goodCommentCount" />
+        <result column="commonCommentCount" property="commonCommentCount" />
+        <result column="badCommentCount" property="badCommentCount" />
+    </resultMap>
+
+    <!--void updateBatch(Map<String, Object> paramMap);
+    (50,49)
+     collection="" 遍历的对象
+      open="" 以什么开始
+       close="" 以什么结束
+        separator=""  分隔符
+        item=""  每次遍历的对象
+         (50,49)==> 50  49
+    -->
+    <update id="updateOnBatch" parameterType="map">
+
+        update t_product set state = 2 ,onSaleTime=#{onSaleTime} where id in
+
+      <foreach collection="ids" open="(" close=")" separator="," item="id">
+          #{id}
+      </foreach>
+
+    </update>
+
+    <update id="updateOffBatch" parameterType="map">
+
+        update t_product set state = 1 ,offSaleTime=#{offSaleTime} where id in
+
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+
+    </update>
+
+</mapper>

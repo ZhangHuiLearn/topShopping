@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+server:
+  port: 8081
+  max-http-header-size: 4048576
+spring:
+  profiles: dev
+  application:
+    name: common-provider
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: elasticsearch
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka
+---
+server:
+  port: 8081
+  max-http-header-size: 4048576
+spring:
+  profiles: test
+  application:
+    name: common-provider
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: elasticsearch
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka
+---
+server:
+  port: 8081
+  max-http-header-size: 4048576
+spring:
+  profiles: prod
+  application:
+    name: common-provider
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: elasticsearch
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka

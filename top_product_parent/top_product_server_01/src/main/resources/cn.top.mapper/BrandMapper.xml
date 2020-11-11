@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.top.mapper.BrandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.top.domain.Brand">
+        <id column="id" property="id" />
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="name" property="name" />
+        <result column="englishName" property="englishName" />
+        <result column="firstLetter" property="firstLetter" />
+        <result column="description" property="description" />
+        <result column="product_type_id" property="productTypeId" />
+        <result column="sortIndex" property="sortIndex" />
+        <result column="logo" property="logo" />
+    </resultMap>
+
+    <resultMap id="BrandMap" type="cn.top.domain.Brand">
+        <!--自己的属性-->
+        <!--先封装主键
+        column="" ==》数据库的列
+        property="" ==》domain的属性
+        -->
+        <id column="id" property="id" />
+        <!--再封装非主键-->
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="name" property="name" />
+        <result column="englishName" property="englishName" />
+        <result column="firstLetter" property="firstLetter" />
+        <result column="description" property="description" />
+        <result column="product_type_id" property="productTypeId" />
+        <result column="sortIndex" property="sortIndex" />
+        <result column="logo" property="logo" />
+        <!--关联属性
+        private ProductType productType;
+        -->
+        <association property="productType" javaType="ProductType">
+            <id column="pid" property="id" />
+            <result column="pname" property="name" />
+        </association>
+    </resultMap>
+
+    <!--long queryPageCount(BrandQuery brandQuery);-->
+    <select id="queryPageCount" resultType="long" parameterType="BrandQuery">
+        SELECT
+         count(*)
+        FROM
+         t_brand b
+        LEFT JOIN t_product_type pt ON b.product_type_id = pt.id
+        <include refid="whereSql"/>
+    </select>
+
+   <!-- List<Brand> queryPageList(BrandQuery brandQuery);-->
+    <select id="queryPageList" resultMap="BrandMap" parameterType="BrandQuery">
+         SELECT
+          b.id,
+          b.createTime,
+          b.updateTime,
+          b.name,
+          b.englishName,
+          b.firstLetter,
+          b.description,
+          b.product_type_id,
+          b.sortIndex,
+          b.logo,
+          pt.id pid,
+          pt.name pname
+        FROM
+            t_brand b
+        LEFT JOIN t_product_type pt ON b.product_type_id = pt.id
+        <include refid="whereSql"/>
+        limit #{start},#{rows}
+    </select>
+
+    <!--where b.name like '%D%' or b.englishName like '%D%'-->
+    <sql id="whereSql">
+       <where>
+           <if test="keyword!=null and keyword!=''">
+               b.name like  CONCAT('%',#{keyword},'%') or b.englishName like CONCAT('%',#{keyword},'%')
+           </if>
+       </where>
+    </sql>
+
+</mapper>

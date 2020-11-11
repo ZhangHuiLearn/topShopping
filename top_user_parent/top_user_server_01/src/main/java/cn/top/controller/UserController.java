@@ -1,7 +1,9 @@
 package cn.top.controller;
 
 import cn.top.domain.User;
+import cn.top.service.IUserService;
 import cn.top.util.AjaxResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,9 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    public IUserService userService;
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public AjaxResult login(@RequestBody User user){
-        return AjaxResult.me();
+        if (user != null && user.getId() != null) {
+            User selectUser = userService.selectById(user.getId());
+            if (selectUser != null && selectUser.getPassword().equals(user.getPassword())) {
+                return AjaxResult.me().setObject(selectUser);
+            }
+        }
+        return AjaxResult.me().setSuccess(false).setMsg("操作失败");
     }
 
     // /user/login2

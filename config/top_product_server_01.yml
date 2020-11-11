@@ -1,0 +1,73 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+server: 
+  port: 8101
+spring:
+  profiles: dev #开发环境
+  application:
+    name: product-provider
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///topshopping
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka  #告诉服务提供者要把服务注册到哪儿 #单机环境
+  instance:
+    prefer-ip-address: true #显示客户端真实ip
+mybatis-plus:
+  type-aliases-package: cn.top.domain,cn.top.query
+feign:
+  hystrix:
+    enabled: true
+---
+server:
+  port: 8101
+spring:
+  profiles: test
+  application:
+    name: product-provider
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///topshopping
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka  #告诉服务提供者要把服务注册到哪儿 #单机环境
+  instance:
+    prefer-ip-address: true #显示客户端真实ip
+mybatis-plus:
+  type-aliases-package: cn.top.domain,cn.top.query
+feign:
+  hystrix:
+    enabled: true
+---
+server:
+  port: 8101
+spring:
+  profiles: prod
+  application:
+    name: product-provider
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///topshopping
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka  #告诉服务提供者要把服务注册到哪儿 #单机环境
+  instance:
+    prefer-ip-address: true #显示客户端真实ip
+mybatis-plus:
+  type-aliases-package: cn.top.domain,cn.top.query
+feign:
+  hystrix:
+    enabled: true

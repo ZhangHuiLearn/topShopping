@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    config:
+      name: top_common_server_01 #github上面名称
+      profile: dev #环境
+      label: master #分支
+#      uri: http://127.0.0.1:8847 #配置服务器
+      discovery:
+        enabled: true #开启Config服务发现支持
+        service-id: top-config-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka,http://127.0.0.1:7002/eureka

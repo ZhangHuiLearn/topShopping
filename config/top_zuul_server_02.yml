@@ -16,6 +16,8 @@ eureka:
 zuul:
   routes:
     user-provider: /user/** #以/user开头的所有路径都转发给user-provider进行处理
+    common-provider: /common/**
+    product-provider: /product/**
   ignored-services: "*" #忽略掉服务名访问方式 使用上面/user的方式来访问
   prefix: "/top" #添加 前缀访问  localhost:9527/top/user/provider/user/2
 ---
@@ -32,6 +34,8 @@ eureka:
 zuul:
   routes:
     user-provider: /user/** #以/user开头的所有路径都转发给user-provider进行处理
+    common-provider: /common/**
+    product-provider: /product/**
   ignored-services: "*" #忽略掉服务名访问方式 使用上面/user的方式来访问
   prefix: "/top" #添加 前缀访问  localhost:9527/top/user/provider/user/2
 ---
@@ -48,5 +52,7 @@ eureka:
 zuul:
   routes:
     user-provider: /user/** #以/user开头的所有路径都转发给user-provider进行处理
+    common-provider: /common/**
+    product-provider: /product/**
   ignored-services: "*" #忽略掉服务名访问方式 使用上面/user的方式来访问
   prefix: "/top" #添加 前缀访问  localhost:9527/top/user/provider/user/2
